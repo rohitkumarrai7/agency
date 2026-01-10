@@ -4,8 +4,9 @@ import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { motion } from "motion/react";
 import PillNav  from "@/components/ui/PillNav";
 import LogoLoop from '@/components/ui/LogoLoop';
-import BentoGrid from '@/components/ui/bento-grid';
+import BentoGrid from '@/components/ui/right-side-image-hero';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+import ClickSpark from "@/components/ui/ClickSpark";
 
 const techLogos = [
   { node: <SiReact className="text-neutral-700 dark:text-neutral-300" />, title: "React", href: "https://react.dev" },
@@ -32,8 +33,15 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-neutral-50">
-      {/* Hero Section */}
-      <section className="relative w-full overflow-x-hidden">
+      <ClickSpark
+        sparkColor='#000000'
+        sparkSize={10}
+        sparkRadius={15}
+        sparkCount={8}
+        duration={400}
+      >
+        {/* Hero Section */}
+        <section className="relative w-full overflow-x-hidden">
         {/* Background Ripple Effect - Top Half */}
         <div className="pointer-events-none absolute top-0 left-0 right-0 h-1/2 flex items-start justify-center pt-10 sm:pt-12">
           <div className="animate-fade-in">
@@ -42,16 +50,16 @@ function App() {
         </div>
 
         <PillNav
-  initialLoadAnimation
-  className="custom-nav"
-  logo="Your Logo"
-  items={[
-    { label: 'Home', href: '#' },
-    { label: 'About', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Contact', href: '#' }
-  ]}
-/>
+          initialLoadAnimation
+          className="custom-nav"
+          logo="Your Logo"
+          items={[
+            { label: 'Home', href: '#' },
+            { label: 'About', href: '#' },
+            { label: 'Services', href: '#' },
+            { label: 'Contact', href: '#' }
+          ]}
+        />
 
         {/* Hero Content */}
         <div className="relative z-10 flex min-h-svh items-start pt-28 pb-14 sm:pt-32 md:pt-24 lg:items-center lg:pt-26">
@@ -130,6 +138,8 @@ function App() {
           </div>
         </div>
       </section>
+      
+      </ClickSpark>
     </div>
   )
 }
