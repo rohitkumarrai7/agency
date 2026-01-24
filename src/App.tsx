@@ -7,6 +7,7 @@ import LogoLoop from '@/components/ui/LogoLoop';
 import BentoGrid from '@/components/ui/right-side-image-hero';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 import ClickSpark from "@/components/ui/ClickSpark";
+import FeaturesSectionDemo from '@/components/features-section-demo-1';
 
 const techLogos = [
   { node: <SiReact className="text-neutral-700 dark:text-neutral-300" />, title: "React", href: "https://react.dev" },
@@ -62,7 +63,7 @@ function App() {
         />
 
         {/* Hero Content */}
-        <div className="relative z-10 flex min-h-svh items-start pt-28 pb-14 sm:pt-32 md:pt-24 lg:items-center lg:pt-26">
+        <div className="relative z-10 flex min-h-svh items-start pt-28 sm:pt-32 md:pt-24 lg:items-center lg:pt-26">
           <div className="mx-auto w-full max-w-6xl px-6">
             <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2">
               {/* Left: Text */}
@@ -138,8 +139,11 @@ function App() {
           </div>
         </div>
       </section>
-      
+
+        <FeaturesSectionDemo />
+
       </ClickSpark>
+      
     </div>
   )
 }
