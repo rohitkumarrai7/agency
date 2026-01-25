@@ -1,11 +1,11 @@
-import React from "react";
 import { useId } from "react";
 import { AiOutlineRobot } from "react-icons/ai";
 import { FaCode, FaCogs, FaDesktop, FaBrain, FaLifeRing } from "react-icons/fa";
+import GlareHover from "@/components/GlareHover";
 
 export default function FeaturesSectionDemo() {
   return (
-    <div className="pb-20 lg:pb-40">
+    <div className="pt-16 sm:pt-20 md:pt-12 lg:pt-0 pb-20 lg:pb-40">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
           What we offer
@@ -17,26 +17,38 @@ export default function FeaturesSectionDemo() {
           We've had the pleasure to collaborate with top teams working across a variety of B2C & B2B industries across the globe.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 md:gap-2 max-w-7xl mx-auto mt-12 lg:mt-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 md:gap-2 max-w-7xl mx-auto mt-12 lg:mt-16 px-6 sm:px-8 md:px-4 lg:px-0">
         {grid.map((feature) => (
-          <div
+          <GlareHover
             key={feature.title}
-            className="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden"
+            width="100%"
+            height="100%"
+            background="transparent"
+            borderRadius="24px"
+            borderColor="transparent"
+            glareColor="#ffffff"
+            glareOpacity={0.8}
+            glareAngle={-45}
+            glareSize={300}
+            transitionDuration={700}
+            className="w-full h-full"
           >
-            <Grid size={20} />
-            <div className="flex items-start gap-3 relative z-20">
-              {feature.icon && (
-                // @ts-ignore - icon is a React component
-                <feature.icon className="text-xl text-neutral-700 dark:text-neutral-300 flex-shrink-0" />
-              )}
-              <p className="text-base font-bold text-neutral-800 dark:text-white">
-                {feature.title}
+            <div className="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800">
+              <Grid size={20} />
+              <div className="flex items-start gap-3 relative z-20">
+                {feature.icon && (
+                  // @ts-ignore - icon is a React component
+                  <feature.icon className="text-xl text-neutral-700 dark:text-neutral-300 shrink-0" />
+                )}
+                <p className="text-base font-bold text-neutral-800 dark:text-white">
+                  {feature.title}
+                </p>
+              </div>
+              <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20">
+                {feature.description}
               </p>
             </div>
-            <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20">
-              {feature.description}
-            </p>
-          </div>
+          </GlareHover>
         ))}
       </div>
     </div>
@@ -97,8 +109,8 @@ export const Grid = ({
     [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
   ];
   return (
-    <div className="pointer-events-none absolute left-1/2 top-0  -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
-      <div className="absolute inset-0 bg-gradient-to-r  [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-zinc-900/30 from-zinc-100/30 to-zinc-300/30 dark:to-zinc-900/30 opacity-100">
+    <div className="pointer-events-none absolute left-1/2 top-0  -ml-20 -mt-2 h-full w-full mask-[linear-gradient(white,transparent)]">
+      <div className="absolute inset-0 bg-linear-to-r  mask-[radial-gradient(farthest-side_at_top,white,transparent)] dark:from-zinc-900/30 from-zinc-100/30 to-zinc-300/30 dark:to-zinc-900/30 opacity-100">
         <GridPattern
           width={size ?? 20}
           height={size ?? 20}
