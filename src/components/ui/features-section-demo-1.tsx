@@ -1,7 +1,8 @@
 import { useId } from "react";
 import { AiOutlineRobot } from "react-icons/ai";
 import { FaCode, FaCogs, FaDesktop, FaBrain, FaLifeRing } from "react-icons/fa";
-import GlareHover from "@/components/GlareHover";
+// import GlareHover from "./GlareHover.jsx";
+// @ts-ignore - GlareHover.jsx lacks type declarations
 
 export default function FeaturesSectionDemo() {
   return (
@@ -19,20 +20,20 @@ export default function FeaturesSectionDemo() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 md:gap-2 max-w-7xl mx-auto mt-12 lg:mt-16 px-6 sm:px-8 md:px-4 lg:px-0">
         {grid.map((feature) => (
-          <GlareHover
-            key={feature.title}
-            width="100%"
-            height="100%"
-            background="transparent"
-            borderRadius="24px"
-            borderColor="transparent"
-            glareColor="#ffffff"
-            glareOpacity={0.8}
-            glareAngle={-45}
-            glareSize={300}
-            transitionDuration={700}
-            className="w-full h-full"
-          >
+          // <GlareHover
+          //   key={feature.title}
+          //   width="100%"
+          //   height="100%"
+          //   background="transparent"
+          //   borderRadius="24px"
+          //   borderColor="transparent"
+          //   glareColor="#ffffff"
+          //   glareOpacity={0.8}
+          //   glareAngle={-45}
+          //   glareSize={300}
+          //   transitionDuration={700}
+          //   className="w-full h-full"
+          // >
             <div className="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800">
               <Grid size={20} />
               <div className="flex items-start gap-3 relative z-20">
@@ -48,7 +49,7 @@ export default function FeaturesSectionDemo() {
                 {feature.description}
               </p>
             </div>
-          </GlareHover>
+          // </GlareHover>
         ))}
       </div>
     </div>
