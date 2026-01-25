@@ -69,7 +69,7 @@ export default function BookingSection() {
           {/* Right: Calendly embed */}
           <div className="lg:col-span-7">
             <div className="flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between gap-4 border-b border-neutral-200 px-4 py-3 flex-shrink-0">
+              <div className="flex items-center justify-between gap-4 border-b border-neutral-200 px-4 py-3 shrink-0">
                 <div className="text-sm font-semibold text-neutral-900">Pick a time</div>
                 <a
                   className="text-xs font-medium text-neutral-600 hover:underline"

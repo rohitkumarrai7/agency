@@ -13,6 +13,7 @@ import PreviousWorkSection from '@/components/ui/previous-work-section';
 import StatsSection from '@/components/ui/stats-section';
 import TestimonialsSection from '@/components/ui/testimonials-section';
 import BookingSection from '@/components/ui/booking-section';
+import Footer from '@/components/ui/footer';
 
 const techLogos = [
   { node: <SiReact className="text-neutral-700 dark:text-neutral-300" />, title: "React", href: "https://react.dev" },
@@ -47,7 +48,7 @@ function App() {
         duration={400}
       >
         {/* Hero Section */}
-        <section className="relative w-full overflow-x-hidden">
+        <section id="home" className="relative w-full overflow-x-hidden">
         {/* Background Ripple Effect - Top Half */}
         <div className="pointer-events-none absolute top-0 left-0 right-0 h-1/2 flex items-start justify-center pt-10 sm:pt-12">
           <div className="animate-fade-in">
@@ -60,9 +61,9 @@ function App() {
           className="custom-nav"
           logo="Your Logo"
           items={[
-            { label: 'Home', href: '#' },
-            { label: 'About', href: '#' },
-            { label: 'Services', href: '#' },
+            { label: 'Home', href: '#home' },
+            { label: 'About', href: '#about' },
+            { label: 'Services', href: '#services' },
             { label: 'Contact', href: '#booking' }
           ]}
         />
@@ -145,9 +146,13 @@ function App() {
         </div>
       </section>
 
-        <FeaturesSectionDemo />
+        <section id="services">
+          <FeaturesSectionDemo />
+        </section>
 
-        <WorkflowSection />
+        <section id="about">
+          <WorkflowSection />
+        </section>
 
         <PreviousWorkSection />
 
@@ -156,6 +161,8 @@ function App() {
         <TestimonialsSection />
 
         <BookingSection />
+
+        <Footer />
 
       </ClickSpark>
       

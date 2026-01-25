@@ -91,7 +91,7 @@ const projects = [
 
 export default function PreviousWorkSection() {
   return (
-    <div className="relative py-12 lg:py-16 bg-white">
+    <div id="work" className="relative py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 lg:mb-10">
