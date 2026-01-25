@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import type { ReactNode } from "react";
 
 export const InfiniteMovingCards = ({
   items,
@@ -11,7 +12,7 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    quote: string;
+    quote: string | ReactNode;
     name: string;
     title: string;
   }[];
@@ -20,62 +21,135 @@ export const InfiniteMovingCards = ({
   pauseOnHover?: boolean;
   className?: string;
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLUListElement>(null);
+  const [isDuplicated, setIsDuplicated] = useState(false);
+  const isHoveredRef = useRef(false);
+  const animationRef = useRef<number | null>(null);
+  const positionRef = useRef(0);
+  const lastTimeRef = useRef<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Detect mobile device
   useEffect(() => {
-    addAnimation();
+    const checkMobile = () => {
+      setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  const [start, setStart] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
+  const getSpeedValue = useCallback(() => {
+    if (speed === "fast") return 50; // pixels per second
+    if (speed === "normal") return 30;
+    return 20; // slow
+  }, [speed]);
 
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
+  // Use requestAnimationFrame for smooth animation that works on mobile
+  useEffect(() => {
+    if (!scrollerRef.current || !containerRef.current || isDuplicated) return;
+
+    // Duplicate items for seamless loop
+    const scrollerContent = Array.from(scrollerRef.current.children);
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      if (scrollerRef.current) {
+        scrollerRef.current.appendChild(duplicatedItem);
+      }
+    });
+
+    setIsDuplicated(true);
+  }, [isDuplicated]);
+
+  // Animation loop using requestAnimationFrame
+  useEffect(() => {
+    if (!scrollerRef.current || !isDuplicated) return;
+
+    const speedValue = getSpeedValue();
+    const scrollerElement = scrollerRef.current;
+
+    const animate = (currentTime: number) => {
+      if (!scrollerElement) return;
+
+      if (lastTimeRef.current === 0) {
+        lastTimeRef.current = currentTime;
+      }
+
+      const deltaTime = (currentTime - lastTimeRef.current) / 1000; // Convert to seconds
+      lastTimeRef.current = currentTime;
+
+      // Check hover state using ref instead of state to avoid re-renders
+      const shouldPause = !isMobile && pauseOnHover && isHoveredRef.current;
+      
+      if (!shouldPause) {
+        const movement = speedValue * deltaTime;
+        if (direction === "left") {
+          positionRef.current -= movement;
+        } else {
+          positionRef.current += movement;
         }
-      });
 
-      getDirection();
-      getSpeed();
-      setStart(true);
-    }
-  }
-  const getDirection = () => {
-    if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards",
-        );
-      } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse",
-        );
+        // Get the width of the original content (half since we duplicated)
+        const contentWidth = scrollerElement.scrollWidth / 2;
+
+        // Reset position for seamless loop
+        if (direction === "left" && positionRef.current <= -contentWidth) {
+          positionRef.current += contentWidth;
+        } else if (direction === "right" && positionRef.current >= 0) {
+          positionRef.current -= contentWidth;
+        }
+
+        scrollerElement.style.transform = `translate3d(${positionRef.current}px, 0, 0)`;
       }
-    }
-  };
-  const getSpeed = () => {
-    if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate);
+
+    // Cleanup
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
-    }
-  };
+    };
+  }, [direction, getSpeedValue, isDuplicated, isMobile, pauseOnHover]);
+
+  // Handle visibility change - restart animation when page becomes visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        lastTimeRef.current = 0; // Reset time to prevent jumps
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <div
       ref={containerRef}
-      onMouseEnter={() => pauseOnHover && setIsHovered(true)}
-      onMouseLeave={() => pauseOnHover && setIsHovered(false)}
+      onMouseEnter={() => {
+        if (!isMobile && pauseOnHover) {
+          isHoveredRef.current = true;
+        }
+      }}
+      onMouseLeave={() => {
+        if (!isMobile && pauseOnHover) {
+          isHoveredRef.current = false;
+        }
+      }}
+      onTouchStart={(e) => {
+        // Prevent touch from triggering hover states on mobile
+        e.currentTarget.style.pointerEvents = 'auto';
+      }}
       className={cn(
         "scroller relative z-20 max-w-7xl overflow-hidden mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className,
@@ -85,10 +159,9 @@ export const InfiniteMovingCards = ({
         ref={scrollerRef}
         className={cn(
           "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
-          start && "animate-scroll",
         )}
         style={{
-          animationPlayState: isHovered ? "paused" : "running",
+          willChange: "transform",
         }}
       >
         {items.map((item) => (

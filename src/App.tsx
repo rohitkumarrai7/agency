@@ -12,6 +12,7 @@ import WorkflowSection from '@/components/ui/workflow-section';
 import PreviousWorkSection from '@/components/ui/previous-work-section';
 import StatsSection from '@/components/ui/stats-section';
 import TestimonialsSection from '@/components/ui/testimonials-section';
+import BookingSection from '@/components/ui/booking-section';
 
 const techLogos = [
   { node: <SiReact className="text-neutral-700 dark:text-neutral-300" />, title: "React", href: "https://react.dev" },
@@ -62,7 +63,7 @@ function App() {
             { label: 'Home', href: '#' },
             { label: 'About', href: '#' },
             { label: 'Services', href: '#' },
-            { label: 'Contact', href: '#' }
+            { label: 'Contact', href: '#booking' }
           ]}
         />
 
@@ -153,6 +154,8 @@ function App() {
         <StatsSection />
 
         <TestimonialsSection />
+
+        <BookingSection />
 
       </ClickSpark>
       

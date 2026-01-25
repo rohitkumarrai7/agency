@@ -63,13 +63,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Infinite Moving Cards */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
+        <div className="relative">
           <InfiniteMovingCards
             items={testimonials.map((testimonial) => ({
               ...testimonial,
@@ -93,7 +87,7 @@ export default function TestimonialsSection() {
             pauseOnHover={true}
             className="py-4"
           />
-        </motion.div>
+        </div>
       </div>
     </div>
   );
