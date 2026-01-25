@@ -6,7 +6,7 @@ import { FaCode, FaCogs, FaDesktop, FaBrain, FaLifeRing } from "react-icons/fa";
 
 export default function FeaturesSectionDemo() {
   return (
-    <div className="pt-16 sm:pt-20 md:pt-12 lg:pt-0 pb-20 lg:pb-40">
+    <div className="pt-16 sm:pt-20 md:pt-12 lg:pt-0 pb-12 lg:pb-16">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
           What we offer
@@ -34,7 +34,10 @@ export default function FeaturesSectionDemo() {
           //   transitionDuration={700}
           //   className="w-full h-full"
           // >
-            <div className="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800">
+            <div
+              key={feature.title}
+              className="relative bg-linear-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800"
+            >
               <Grid size={20} />
               <div className="flex items-start gap-3 relative z-20">
                 {feature.icon && (
@@ -150,10 +153,10 @@ export function GridPattern({ width, height, x, y, squares, ...props }: any) {
       />
       {squares && (
         <svg x={x} y={y} className="overflow-visible">
-          {squares.map(([x, y]: any) => (
+          {squares.map(([x, y]: any, i: number) => (
             <rect
               strokeWidth="0"
-              key={`${x}-${y}`}
+              key={`${x}-${y}-${i}`}
               width={width + 1}
               height={height + 1}
               x={x * width}

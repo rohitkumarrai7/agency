@@ -8,6 +8,10 @@ import BentoGrid from '@/components/ui/right-side-image-hero';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 import ClickSpark from "@/components/ui/ClickSpark";
 import FeaturesSectionDemo from '@/components/ui/features-section-demo-1';
+import WorkflowSection from '@/components/ui/workflow-section';
+import PreviousWorkSection from '@/components/ui/previous-work-section';
+import StatsSection from '@/components/ui/stats-section';
+import TestimonialsSection from '@/components/ui/testimonials-section';
 
 const techLogos = [
   { node: <SiReact className="text-neutral-700 dark:text-neutral-300" />, title: "React", href: "https://react.dev" },
@@ -141,6 +145,14 @@ function App() {
       </section>
 
         <FeaturesSectionDemo />
+
+        <WorkflowSection />
+
+        <PreviousWorkSection />
+
+        <StatsSection />
+
+        <TestimonialsSection />
 
       </ClickSpark>
       
