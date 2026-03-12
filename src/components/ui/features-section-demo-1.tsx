@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { AiOutlineRobot } from "react-icons/ai";
-import { FaCode, FaCogs, FaDesktop, FaBrain, FaLifeRing } from "react-icons/fa";
+import { FaCode, FaCogs, FaDesktop, FaBrain, FaLifeRing, FaMicrophone } from "react-icons/fa";
 // import GlareHover from "./GlareHover.jsx";
 // @ts-ignore - GlareHover.jsx lacks type declarations
 
@@ -12,47 +12,60 @@ export default function FeaturesSectionDemo() {
           What we offer
         </h2>
         <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
-          As a full stack agency, We help early stage startups with everything from branding, product design, video and investor decks.
+          From AI voice agents that handle your calls 24/7 to intelligent automation that streamlines your entire business—we build the AI-powered systems that scale with you.
         </p>
         <p className="text-sm lg:text-base max-w-2xl mb-10 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
           We've had the pleasure to collaborate with top teams working across a variety of B2C & B2B industries across the globe.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 md:gap-2 max-w-7xl mx-auto mt-12 lg:mt-16 px-6 sm:px-8 md:px-4 lg:px-0">
-        {grid.map((feature) => (
-          // <GlareHover
-          //   key={feature.title}
-          //   width="100%"
-          //   height="100%"
-          //   background="transparent"
-          //   borderRadius="24px"
-          //   borderColor="transparent"
-          //   glareColor="#ffffff"
-          //   glareOpacity={0.8}
-          //   glareAngle={-45}
-          //   glareSize={300}
-          //   transitionDuration={700}
-          //   className="w-full h-full"
-          // >
-            <div
-              key={feature.title}
-              className="relative bg-linear-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800"
-            >
-              <Grid size={20} />
-              <div className="flex items-start gap-3 relative z-20">
-                {feature.icon && (
-                  // @ts-ignore - icon is a React component
-                  <feature.icon className="text-xl text-neutral-700 dark:text-neutral-300 shrink-0" />
-                )}
-                <p className="text-base font-bold text-neutral-800 dark:text-white">
-                  {feature.title}
-                </p>
-              </div>
-              <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20">
-                {feature.description}
+      {/* Featured AI Services - Top Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-3 max-w-7xl mx-auto mt-12 lg:mt-16 px-6 sm:px-8 md:px-4 lg:px-0">
+        {grid.slice(0, 2).map((feature) => (
+          <div
+            key={feature.title}
+            className="relative bg-linear-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border-2 border-blue-200 dark:border-blue-900"
+          >
+            <Grid size={20} />
+            <div className="flex items-center gap-2 mb-2 relative z-20">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 dark:bg-blue-950 dark:text-blue-400 px-2 py-0.5 rounded-full">Featured</span>
+            </div>
+            <div className="flex items-start gap-3 relative z-20">
+              {feature.icon && (
+                // @ts-ignore - icon is a React component
+                <feature.icon className="text-2xl text-blue-600 dark:text-blue-400 shrink-0" />
+              )}
+              <p className="text-lg font-bold text-neutral-800 dark:text-white">
+                {feature.title}
               </p>
             </div>
-          // </GlareHover>
+            <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Other Services - Bottom Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-3 max-w-7xl mx-auto mt-3 px-6 sm:px-8 md:px-4 lg:px-0">
+        {grid.slice(2).map((feature) => (
+          <div
+            key={feature.title}
+            className="relative bg-linear-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden w-full h-full border border-neutral-200 dark:border-neutral-800"
+          >
+            <Grid size={20} />
+            <div className="flex items-start gap-3 relative z-20">
+              {feature.icon && (
+                // @ts-ignore - icon is a React component
+                <feature.icon className="text-xl text-neutral-700 dark:text-neutral-300 shrink-0" />
+              )}
+              <p className="text-base font-bold text-neutral-800 dark:text-white">
+                {feature.title}
+              </p>
+            </div>
+            <p className="text-neutral-600 dark:text-neutral-400 mt-4 text-base font-normal relative z-20">
+              {feature.description}
+            </p>
+          </div>
         ))}
       </div>
     </div>
@@ -61,10 +74,16 @@ export default function FeaturesSectionDemo() {
 
 const grid = [
   {
-    title: "AI Automation",
+    title: "AI Voice Agents",
+    icon: FaMicrophone,
+    description:
+      "Build and deploy intelligent AI voice agents that handle customer calls, qualify leads, book appointments, and provide 24/7 support—powered by cutting-edge speech AI for natural, human-like conversations at scale.",
+  },
+  {
+    title: "AI Agent Automation",
     icon: AiOutlineRobot,
     description:
-      "Our AI automation services design and deploy intelligent systems that automate repetitive tasks, integrate with your existing tools, and extract actionable insights from complex data—helping you increase efficiency, reduce costs, and scale operations.",
+      "Design and deploy autonomous AI agents that automate complex workflows, integrate with your existing tools, and make intelligent decisions—from lead nurturing to data processing, reducing costs and scaling operations effortlessly.",
   },
   {
     title: "Web Development",

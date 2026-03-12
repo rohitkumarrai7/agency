@@ -25,7 +25,7 @@ const techLogos = [
 export function ContainerTextFlipDemo() {
   return (
     <ContainerTextFlip
-      words={["Startups", "Businesses", "Agencies", "Individuals"]}
+      words={["Startups", "Businesses", "Agencies", "Enterprises"]}
     />
   );
 }
@@ -59,7 +59,7 @@ function App() {
         <PillNav
           initialLoadAnimation
           className="custom-nav"
-          logo="Your Logo"
+          logo="/divfixer logo.png"
           items={[
             { label: 'Home', href: '#home' },
             { label: 'About', href: '#about' },
@@ -75,15 +75,15 @@ function App() {
               {/* Left: Text */}
               <div className="min-w-0">
                 <h1 className="text-left text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2]! md:leading-[1.1]!">
-                  Development Agency Working for
+                  AI Agents & Automation for
                   <div className="py-2 md:py-4">
                     <ContainerTextFlip />
                   </div>
-                  To Create Great Products
+                  That Drive Real Results
                 </h1>
                 <p className="mt-6 max-w-xl text-left text-base leading-relaxed text-neutral-600 sm:text-lg">
-                  A digital agency specialized in providing value-focused UI/UX design and
-                  development services for startups, brands, and indiehackers, just like us.
+                  We build AI voice agents, intelligent automation workflows, and custom software
+                  that help businesses scale faster—from 24/7 AI-powered calls to end-to-end process automation.
                 </p>
 
                 {/* Buttons */}

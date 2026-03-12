@@ -262,14 +262,13 @@ const PillNav: React.FC<PillNavProps> = ({
             ref={el => {
               logoRef.current = el;
             }}
-            className="box-border rounded-full p-2 inline-flex items-center justify-center overflow-hidden md:absolute md:left-0"
+            className="box-border rounded-2xl inline-flex items-center justify-center overflow-hidden md:absolute md:left-6 shrink-0"
             style={{
-              width: 'var(--nav-h)',
-              height: 'var(--nav-h)',
-              background: 'var(--base, #000)'
+              height: '48px',
+              width: 'auto'
             }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} ref={logoImgRef} className="h-full w-auto object-cover block" />
           </Link>
         ) : (
           <a
@@ -279,14 +278,13 @@ const PillNav: React.FC<PillNavProps> = ({
             ref={el => {
               logoRef.current = el;
             }}
-            className="box-border rounded-full p-2 inline-flex items-center justify-center overflow-hidden md:absolute md:left-0"
+            className="box-border rounded-2xl inline-flex items-center justify-center overflow-hidden md:absolute md:left-6 shrink-0"
             style={{
-              width: 'var(--nav-h)',
-              height: 'var(--nav-h)',
-              background: 'var(--base, #000)'
+              height: '48px',
+              width: 'auto'
             }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} ref={logoImgRef} className="h-full w-auto object-cover block" />
           </a>
         )}
 
