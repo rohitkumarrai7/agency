@@ -16,7 +16,7 @@ const BentoGrid: FC = () => {
     "https://assets.aceternity.com/placeholders-and-vanish-input.png",
     "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
     "https://assets.aceternity.com/signup-form.png",
-    "public/3d-marquee-logo.png",
+    "/3d-marquee-logo.png",
     "https://assets.aceternity.com/spotlight-new.webp",
     "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
     "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
